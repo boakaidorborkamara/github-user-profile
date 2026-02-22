@@ -1,5 +1,6 @@
 let search_input = document.getElementById("search-input");
-let result_container = document.getElementById("result-container");
+let result_container = document.getElementById("content-section");
+let side_bar = document.getElementById("my-sidebar");
 let timeoutId;
 let isLoading = false;
 let cache = {};
@@ -87,32 +88,66 @@ function handleFirstLoad(cb){
 
 // handles display of data to the DOM 
 function renderUI(isLoading, user){
+    console.log("user", user);
+
+        // alert(`rendering...${user.name}`);
+    removeEleChildren(result_container);
+    // removeEleChildren(side_bar);
+
+
     if(isLoading){
         result_container.innerHTML = `<p>Fetching Data..</p>`;
         return;
     }
 
-    // alert(`rendering...${user.name}`);
-    removeEleChildren(result_container);
+
 
     if(user.status && user.status === "404"){
         result_container.innerHTML = `<p>User not found!</p>`;
         return;
     }
 
-    let html = `
-        <div>
-            <img src=${user.avatar_url}/>
-        </div>
-        <ul>
-            <li>Name: ${user.name}</li>
-            <li>Email: ${user.email}</li>
-            <li>Company: ${user.company}</li>
-            <li>Bio: ${user.bio}</li>
-        </ul>
+    // let html = `
+    //     <div>
+    //         <img src=${user.avatar_url}/>
+    //     </div>
+    //     <ul>
+    //         <li>Name: ${user.name}</li>
+    //         <li>Email: ${user.email}</li>
+    //         <li>Company: ${user.company}</li>
+    //         <li>Bio: ${user.bio}</li>
+    //     </ul>
+    // `;
+
+    let sidebar_content = `
+          <!-- personal info  -->
+          <div>
+            <img src=${user.avatar_url} alt="" />
+            <h2>${user.name}</h2>
+            <p>${user.login}</p>
+            <p>${user.bio}</p>
+            <p>${user.followers} followers</p>
+            <p>${user.following} follwing</p>
+          </div>
+
+          <!-- porfolio and location  -->
+          <div>
+            <p>Company</p>
+            <p>location</p>
+            <a href="">profile linke</a>
+          </div>
+
+          <!-- organization  -->
+          <div>
+            <p>Org 1</p>
+          </div>
     `;
 
-    result_container.innerHTML = html;
+    console.log("aside", side_bar)
+    side_bar.insertAdjacentHTML("beforeend", sidebar_content)
+    
+
+    result_container.insertAdjacentElement("beforeend", side_bar)
 }
 
 function removeEleChildren(eleParentNode){

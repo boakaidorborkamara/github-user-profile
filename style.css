@@ -52,6 +52,11 @@ aside{
     
 }
 
+aside img{
+    border-radius: 100%;
+    width: 80%;
+}
+
 #repos-container{
     padding: 45px;
     /* background-color: aqua; */
