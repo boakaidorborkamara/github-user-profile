@@ -4,6 +4,11 @@
     --primary-color:red;
 }
 
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
 body{
      font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
@@ -12,43 +17,58 @@ body{
 
 #container{
     display:flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
-main{
-    padding: 0em 2em 0em 2em;
-    width: 80vw;
-}
+
+
+/* SEARCH SECTION  */
 
 #search-bar-section{
-    background-color: white;
-    
-    width: 100%;
+    background-color: rgb(34, 33, 33);
+    padding: 50px 20PX;
+    /* width: 100vw; */
+    position: sticky;
+    top: 0px;
 }
 
 #search-bar-section input{
-    width: 100%;
+    width: 95%;
     padding: 10px;
 }
 
 
-/* REPO CONTAINER  */
+/* CONTENT SECTION  */
+#content-section{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+aside{
+    background-color: rgb(218, 218, 218);
+    padding: 25px;
+    height: 100vh;
+    
+}
 
 #repos-container{
-    margin-top: 40px;
+    padding: 45px;
+    /* background-color: aqua; */
+    /* width: 100%; */
 }
 
-
-#repos-container #repos{
+#repos-container div{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap:10px;
+    gap: 10px; 
+    margin-top: 15px;   
 }
 
-#repos-container .repo-card{
+#repos-container div .repo-card{
     border: 1px solid rgb(215, 213, 213);
-    padding: 15px;
-    border-radius: 10px;
+    padding: 40px 20px;
+    border-radius: 5px;
+   
 }
 
