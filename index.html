@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Profile search</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     
-    <!-- search  -->
-    <section>
-        <input type="text" id="search-input" placeholder="Enter GITHUB username to search...">
-    </section>
+    
 
-    <section>
+    <section id="container">
         <!-- aside  -->
          <aside>
             <!-- personal info  -->
@@ -40,17 +38,32 @@
 
         <!-- result  -->
         <main id="result-container">
-            <h3>Reposotories</h3>
+            <!-- search  -->
+            <div id="search-bar-section">
+                <input type="text" id="search-input" placeholder="Enter GITHUB username to search...">
+            </div>
 
-            <!-- repo containers -->
-             <div class="repo-card">
-                <h4>Repo name</h4>
-                <p>Repo name</p>
-             </div>
+
+            <div id="repos-container">
+                <h3>Reposotories</h3>
+
+                <div id="repos">
+                    <!-- repo cards -->
+                    <div class="repo-card">
+                        <h5>Repo name</h5>
+                        <p>Repo name</p>
+                    </div>
+
+                    <div class="repo-card">
+                        <h5>Repo name</h5>
+                        <p>Repo name</p>
+                    </div>
+                </div>
+            </div>
 
         </main>
     </section>
 
-     <script src="./script.js"></script>
+     <!-- <script src="./script.js"></script> -->
 </body>
 </html>
