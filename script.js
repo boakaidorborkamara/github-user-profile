@@ -1,6 +1,7 @@
 let search_input = document.getElementById("search-input");
 let result_container = document.getElementById("content-section");
 let side_bar = document.getElementById("my-sidebar");
+console.log(side_bar)
 let timeoutId;
 let isLoading = false;
 let cache = {};
@@ -91,8 +92,9 @@ function renderUI(isLoading, user){
     console.log("user", user);
 
         // alert(`rendering...${user.name}`);
+        removeEleChildren(side_bar);
     removeEleChildren(result_container);
-    // removeEleChildren(side_bar);
+    
 
 
     if(isLoading){
@@ -152,7 +154,7 @@ function renderUI(isLoading, user){
 
 function removeEleChildren(eleParentNode){
     while(eleParentNode.firstChild){
-        result_container.removeChild(result_container.firstChild);
+        eleParentNode.removeChild(eleParentNode.firstChild);
     }
 }
 
