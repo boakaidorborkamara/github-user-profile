@@ -153,7 +153,7 @@ function renderUI(isLoading, result) {
     repos.forEach((repo)=>{
       let html =  `
       <div class="repo-card">
-              <h5>${repo.name}</h5>
+              <a href=${repo.html_url} target="blank"><h5>${repo.name}</h5> </a>
               <p>${repo.description}</p>
             </div>
     `;
