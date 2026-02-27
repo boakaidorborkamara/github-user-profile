@@ -52,13 +52,22 @@ function handleSearch(search_term, cb) {
       fetchData(url)
         .then((response) => response.json())
         .then((data) => {
+          return fetchData(data.repos_url)
+          .then(response => response.json())
+          .then(repos => {
+            return {user:data, repos:repos}
+          })
+          
+        })
+        .then(result =>{
+          console.log("result", result);
           // cache new data
-          cache[data.login] = data;
+          // cache[data.login] = result;
           console.log("cache", cache);
 
           isLoading = false;
-          cb(isLoading, data);
-        });
+          cb(isLoading, result);
+        })
     });
 }
 
@@ -100,8 +109,10 @@ function renderUI(isLoading, result) {
     let user = result.user;
     let repos = result.repos;
 
+    console.log("user", user)
+
     // handle user not found
-    if (user.status && user.status === "404") {
+    if (user && user.status === "404") {
       result_container.innerHTML = `<p>User not found!</p>`;
       return;
     }
