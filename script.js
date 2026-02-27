@@ -70,10 +70,10 @@ function handleFirstLoad(cb) {
   cb(isLoading, null);
 
   fetchData(url)
-    .then (response => response.json())
+    .then((response) => response.json())
     .then((user) => {
       return fetchData(user.repos_url)
-        .then(response => response.json())
+        .then((response) => response.json())
         .then((repos) => {
           return { user, repos };
         });
@@ -87,35 +87,26 @@ function handleFirstLoad(cb) {
 
 // handles display of data to the DOM
 function renderUI(isLoading, result) {
-  console.log("kdkdkdrrrr");
-  console.log("resulttt", result);
+  removeEleChildren(result_container);
 
-   // alert(`rendering...${user.name}`);
-    // removeEleChildren(side_bar);
-    removeEleChildren(result_container);
+  // handle loading state 
+  if (isLoading) {
+    result_container.innerHTML = `<p>Fetching Data..</p>`;
+    return;
+  }
 
-    if (isLoading) {
-      result_container.innerHTML = `<p>Fetching Data..</p>`;
-      return;
-    }
-
-
+  // update UI when data returns from API
   if (isLoading === false && result) {
-    console.log("resu", result.user);
     let user = result.user;
     let repos = result.repos;
 
-    // let user = result.user;
-
-   
-    // handle user not found 
+    // handle user not found
     if (user.status && user.status === "404") {
       result_container.innerHTML = `<p>User not found!</p>`;
       return;
     }
 
-
-    // add sidebar 
+    // add sidebar user details
     let sidebar_content = `
           <!-- personal info  -->
           <div>
@@ -139,39 +130,24 @@ function renderUI(isLoading, result) {
             <p>Org 1</p>
           </div>
     `;
-
     side_bar.insertAdjacentHTML("beforeend", sidebar_content);
 
-    // add repo cards 
-    // let html =  `
-    //   <div class="repo-card">
-    //           <h5>Repo name</h5>
-    //           <p>Repo name</p>
-    //         </div>
-    // `;
-
-    repos.forEach((repo)=>{
-      let html =  `
+    // add repos for user 
+    repos.forEach((repo) => {
+      let html = `
       <div class="repo-card">
               <a href=${repo.html_url} target="blank"><h5>${repo.name}</h5> </a>
               <p>${repo.description}</p>
             </div>
     `;
 
-    repos_list.insertAdjacentHTML("beforeend", html)
+      repos_list.insertAdjacentHTML("beforeend", html);
     });
 
-    // console.log("reeee", repoo.toString())
-
-    // repos_list.innerHTML = repoo;
-
-    
-
+    // paint the DOM according to style of the written css to avoid css not working as expected 
     result_container.insertAdjacentElement("beforeend", side_bar);
     repos_container.insertAdjacentElement("beforeend", repos_list);
     result_container.insertAdjacentElement("beforeend", repos_container);
-
-
   }
 }
 
