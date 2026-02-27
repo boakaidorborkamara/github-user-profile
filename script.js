@@ -1,6 +1,7 @@
 let search_input = document.getElementById("search-input");
 let result_container = document.getElementById("content-section");
 let side_bar = document.getElementById("my-sidebar");
+let repos_container = document.getElementById("repos-container");
 let repos_list = document.getElementById("repos-list");
 console.log(side_bar);
 let timeoutId;
@@ -167,7 +168,9 @@ function renderUI(isLoading, result) {
     
 
     result_container.insertAdjacentElement("beforeend", side_bar);
-        result_container.insertAdjacentElement("beforeend", repos_list);
+    repos_container.insertAdjacentElement("beforeend", repos_list);
+    result_container.insertAdjacentElement("beforeend", repos_container);
+
 
   }
 }
