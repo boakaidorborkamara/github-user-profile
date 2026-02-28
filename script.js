@@ -97,6 +97,8 @@ function handleFirstLoad(cb) {
 // handles display of data to the DOM
 function renderUI(isLoading, result) {
   removeEleChildren(result_container);
+  removeEleChildren(side_bar);
+  removeEleChildren(repos_list)
 
   // handle loading state 
   if (isLoading) {
